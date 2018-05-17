@@ -1,0 +1,3 @@
+<design:component label="Markdown Editor">
+    <design:attribute name="sourceField" label="Field to edit" default="Description" description="Which field can be edited with our cool editor"/>
+</design:component>

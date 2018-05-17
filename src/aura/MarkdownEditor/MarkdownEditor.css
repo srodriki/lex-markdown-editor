@@ -1,0 +1,35 @@
+.THIS.slds-card {
+
+	border: 1px solid rgb(221, 219, 218) !important;
+    border-radius: 0.25rem;
+}
+
+.THIS * .slds-textarea {
+    background-color: #ffffcc !important;
+    border: none;
+    border-radius: 0;
+    /* min-height: 50%; */
+    position: relative;
+    bottom: 0;
+    overflow-y: auto;
+    height: 30rem;
+    resize: none;
+}
+
+.THIS * .slds-form-element__label {
+    display:none;
+}
+
+.THIS * .markdown-body {
+    
+    height: 30rem;
+    overflow-y: auto;
+    margin: 10px;
+}
+
+.THIS > .slds-card__header {
+    
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    font-weight: bold !important;
+}

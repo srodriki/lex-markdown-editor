@@ -1,0 +1,53 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:appHostable" access="global" >
+    
+    <!-- include scripts and styles from the Org's Static Resources-->
+    <ltng:require scripts="{!$Resource.markedJS}" 
+                  styles="{!$Resource.githubMarkdownCSS}" afterScriptsLoaded="{!c.initMarkdown}" ></ltng:require>
+    
+    <!-- This attribute will let us use the component anywhere, since we can pass in which 
+		field we want our component to work with. -->
+    <aura:attribute name="sourceField" type="String" required="true" default=""/>
+    
+    <!-- Lightning Data Service attributes -->
+    <aura:attribute name="record" type="Object"></aura:attribute>
+    <aura:attribute name="simpleRecord" type="Object"></aura:attribute>
+    <aura:attribute name="error" type="String"></aura:attribute>
+    <!-- We use this attribute to pass on a dynamic list of fields to the force:recordData Component.-->
+    <aura:attribute name="sourceFieldsList" type="List" default="[]"></aura:attribute>
+    
+    <!-- this is an attribute to store whatever our user types in. -->
+    <aura:attribute name="editingText" type="String"></aura:attribute>
+    <!-- converted html text from the markdown our users enters. -->
+    <aura:attribute name="mdText" type="String" default=""></aura:attribute>
+    
+    <!-- init handler -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <force:recordData aura:id="forceRecordEditor"
+        recordId="{!v.recordId}"
+        layoutType="FULL"
+        fields="{!v.sourceFieldsList}"
+        mode="EDIT"
+        targetRecord="{!v.record}"
+        targetFields="{!v.simpleRecord}"
+        targetError="{!v.error}"
+        recordUpdated="{!c.onRecordUpdated}" />
+    
+    <lightning:card title="Markdown Editor">
+        
+        <hr/>
+    	<div class="slds-grid slds-m-horizontal_xx-small">
+            <div class="slds-col slds-size_6-of-12">
+                <lightning:textarea aura:id="inputTextField" name="myTextArea" value="{!v.editingText}" onchange="{!c.textUpdated}"/>
+            </div>
+            <div class="slds-col slds-size_6-of-12">
+                <div class="markdown-body">
+                    <aura:unescapedHtml value="{!v.mdText}"/>
+                </div>
+            </div>
+                
+        </div>
+    </lightning:card>
+    
+    
+</aura:component>
