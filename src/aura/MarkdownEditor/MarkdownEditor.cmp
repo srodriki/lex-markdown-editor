@@ -2,7 +2,7 @@
     
     <!-- include scripts and styles from the Org's Static Resources-->
     <ltng:require scripts="{!$Resource.markedJS}" 
-                  styles="{!$Resource.githubMarkdownCSS}" afterScriptsLoaded="{!c.initMarkdown}" ></ltng:require>
+                  styles="{!$Resource.githubMarkdownCSS}"></ltng:require>
     
     <!-- This attribute will let us use the component anywhere, since we can pass in which 
 		field we want our component to work with. -->
@@ -22,6 +22,7 @@
     
     <!-- init handler -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.simpleRecord}" action="{!c.initMarkdown}" />
     
     <force:recordData aura:id="forceRecordEditor"
         recordId="{!v.recordId}"
@@ -35,14 +36,16 @@
     
     <lightning:card title="Markdown Editor">
         
+        
         <hr/>
+        
     	<div class="slds-grid slds-m-horizontal_xx-small">
             <div class="slds-col slds-size_6-of-12">
-                <lightning:textarea aura:id="inputTextField" name="myTextArea" value="{!v.editingText}" onchange="{!c.textUpdated}"/>
+                <lightning:textarea label="Enter Markdown Text Here" name="myTextArea" value="{!v.editingText}" onchange="{!c.textUpdated}"/>
             </div>
             <div class="slds-col slds-size_6-of-12">
                 <div class="markdown-body">
-                    <aura:unescapedHtml value="{!v.mdText}"/>
+                    <aura:unescapedHtml value="{!v.mdText}" />
                 </div>
             </div>
                 

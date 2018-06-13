@@ -33,6 +33,8 @@
                     storedRecord[component.get('v.sourceField')] = userInputText;
                     helper.saveRecord(component);
                 }
+        
+               
             }), 5000
         );   
     }
